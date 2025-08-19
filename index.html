@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة استهلاك الطاقة الكهربائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-i18n="app_title">حاسبة استهلاك الطاقة الكهربائية</h1>
+            <p class="description" data-i18n="app_desc">احسب استهلاك أجهزتك الكهربائية وتكلفتها الشهرية</p>
+        </header>
+
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="ar">العربية</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+
+        <div class="form-section">
+            <div class="form-container">
+                <h2 data-i18n="add_device">إضافة جهاز جديد</h2>
+                <form id="deviceForm">
+                    <div class="form-group">
+                        <label for="deviceName" data-i18n="device_name">اسم الجهاز:</label>
+                        <input type="text" id="deviceName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="devicePower" data-i18n="device_power">استهلاك الطاقة (وات):</label>
+                        <input type="number" id="devicePower" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dailyHours" data-i18n="daily_hours">ساعات التشغيل اليومية:</label>
+                        <input type="number" id="dailyHours" min="1" max="24" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weeklyDays" data-i18n="weekly_days">أيام التشغيل أسبوعياً:</label>
+                        <input type="number" id="weeklyDays" min="1" max="7" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary" data-i18n="add_device_btn">إضافة جهاز</button>
+                </form>
+            </div>
+
+            <div class="predefined-devices">
+                <h2 data-i18n="predefined_devices">الأجهزة الشائعة</h2>
+                <p data-i18n="select_device">اختر من القائمة:</p>
+                
+                <div class="device-grid">
+                    <div class="device-card" data-power="150" data-name="تلفاز LED">
+                        <div class="device-icon"><i class="fas fa-tv"></i></div>
+                        <div class="device-name">تلفاز LED</div>
+                        <div class="device-power">150 وات</div>
+                    </div>
+                    
+                    <div class="device-card" data-power="200" data-name="ثلاجة">
+                        <div class="device-icon"><i class="fas fa-blender"></i></div>
+                        <div class="device-name">ثلاجة</div>
+                        <div class="device-power">200 وات</div>
+                    </div>
+                    
+                    <div class="device-card" data-power="1200" data-name="مكيف هواء">
+                        <div class="device-icon"><i class="fas fa-fan"></i></div>
+                        <div class="device-name">مكيف هواء</div>
+                        <div class="device-power">1200 وات</div>
+                    </div>
+                    
+                    <div class="device-card" data-power="800" data-name="غسالة">
+                        <div class="device-icon"><i class="fas fa-soap"></i></div>
+                        <div class="device-name">غسالة</div>
+                        <div class="device-power">800 وات</div>
+                    </div>
+                    
+                    <div class="device-card" data-power="1000" data-name="سخان مياه">
+                        <div class="device-icon"><i class="fas fa-water"></i></div>
+                        <div class="device-name">سخان مياه</div>
+                        <div class="device-power">1000 وات</div>
+                    </div>
+                    
+                    <div class="device-card" data-power="80" data-name="حاسوب محمول">
+                        <div class="device-icon"><i class="fas fa-laptop"></i></div>
+                        <div class="device-name">حاسوب محمول</div>
+                        <div class="device-power">80 وات</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="devicesList" class="device-list">
+            <h3 data-i18n="devices_list">الأجهزة المضافة</h3>
+            <p id="no-devices-msg" data-i18n="no_devices">لم يتم إضافة أي أجهزة بعد</p>
+        </div>
+
+        <div class="action-buttons">
+            <button id="calculate-btn" class="btn-primary" data-i18n="calculate_btn">حساب الاستهلاك</button>
+            <button id="reset-btn" class="btn-danger" data-i18n="reset_btn">بدء من جديد</button>
+        </div>
+
+        <div id="consumptionResults" class="results-section hidden">
+            <h3 data-i18n="results_title">نتائج حساب الاستهلاك</h3>
+            <div id="resultsDetails"></div>
+        </div>
+
+        <div id="message" class="message hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
